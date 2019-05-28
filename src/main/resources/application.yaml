@@ -1,0 +1,32 @@
+server:
+  port: 8888
+ 
+spring:
+  application:
+    name: config-service
+  profiles:
+    active:
+    - dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${CONFIG_REPO_URL:https://github.com/cloud-poc/devops-config-service-repo}
+          clone-on-start: true
+          search-paths:
+          - configs
+      label: master
+  zipkin:
+    compression:
+      enabled: true
+    base-url: ${ZIPKIN_BASE_URL:http://localhost:9411/}
+  sleuth.sampler:
+    probability: 1
+ 
+management.endpoints.web:
+  exposure.include: '*'
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8000/eureka/}
