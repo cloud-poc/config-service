@@ -78,7 +78,7 @@
 					</from>
 					<to>
 						<image>registry.hub.docker.com/akjamie/${project.name}:${project.version}</image>
-						<credHelper>docker-credential-wincred</credHelper>
+						<credHelper>wincred</credHelper>
 					</to>
 					<container>
 						<useCurrentTimestamp>true</useCurrentTimestamp>
