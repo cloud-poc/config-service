@@ -68,7 +68,8 @@
 					</from>
 					<to>
 						<image>registry.hub.docker.com/akjamie/${project.name}:${project.version}</image>
-						<credHelper>wincred</credHelper>
+						<!-- <credHelper>wincred</credHelper> -->
+						<credHelper>osxkeychain</credHelper>
 					</to>
 					<container>
 						<useCurrentTimestamp>true</useCurrentTimestamp>
