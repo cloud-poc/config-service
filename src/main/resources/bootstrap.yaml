@@ -16,8 +16,14 @@ spring:
           search-paths: configs
       label: master
  
-management.endpoints.web:
-  exposure.include: '*'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,bus-refresh,hystrix.stream,prometheus,metrics
+  metrics:
+    export.prometheus.enabled: true
+    tags.application: ${spring.application.name}
   
 eureka:
   client:
