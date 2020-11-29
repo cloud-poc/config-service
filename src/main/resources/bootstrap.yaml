@@ -5,27 +5,27 @@ spring:
   application:
     name: config-service
   profiles:
-    active:
-    - dev
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: ${CONFIG_REPOSITORY_URL:https://github.com/cloud-poc/devops-config-service-repo}
-          clone-on-start: true
-          search-paths: configs
-      label: master
- 
+        native:
+          search-locations: ${CONFIG_ROOT_PATH:config.root-path}/config
+#          - type: git
+#            uri: ${CONFIG_REPOSITORY_URL:https://github.com/cloud-poc/service-config}
+#            cloneOnStart: true
+#            searchPaths: configs
+#            order: 2
+        bootstrap: true
+
+config.root-path: /Users/jamie/Documents/work-benches/workspace-20190524/service-config
+
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,bus-refresh,hystrix.stream,prometheus,metrics
+        include: health,info,bus-refresh,prometheus,metrics
   metrics:
     export.prometheus.enabled: true
     tags.application: ${spring.application.name}
-  
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_CLIENT_SERVICE_URL:http://localhost:8761/eureka/}
+

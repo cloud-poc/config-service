@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="false">
+    <property name="LOG_HOME" value="/Users/jamie/Documents/work-benches/logs" />
+    <property name="SERVICE_NAME" value="config-service"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rolling file name -->
+            <fileNamePattern>${LOG_HOME}/application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- number of days reserved -->
+            <maxHistory>7</maxHistory>
+            <maxFileSize>10MB</maxFileSize>
+            <totalSizeCap>100MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} %-5level %logger {50} ${SERVICE_NAME} - %msg%n}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} [%thread] %-5level %logger {50} ${SERVICE_NAME} - %msg%n}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

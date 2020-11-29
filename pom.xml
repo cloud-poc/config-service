@@ -4,23 +4,25 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.akj.springboot</groupId>
-	<artifactId>cloud-config-service</artifactId>
-	<version>1.0.0</version>
+	<artifactId>config-service</artifactId>
+	<version>2.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>cloud-config-service</name>
 	<url>http://maven.apache.org</url>
 
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.5.RELEASE</version>
+		<version>2.3.5.RELEASE</version>
 	</parent>
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
-		<jib.version>1.2.0</jib.version>
+		<spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
+		<jib.version>2.6.0</jib.version>
 	</properties>
 
 	<dependencyManagement>
@@ -42,8 +44,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -73,13 +75,14 @@
 						<image>openjdk:alpine</image>
 					</from>
 					<to>
-						<image>registry.hub.docker.com/akjamie/${project.name}:${project.version}</image>
+						<image>docker.io/akjamie/${artifactId}:${project.version}</image>
 						<!-- <credHelper>wincred</credHelper> -->
-						<credHelper>osxkeychain</credHelper>
+						<credHelper>desktop</credHelper>
 					</to>
 					<container>
-						<useCurrentTimestamp>true</useCurrentTimestamp>
+						<creationTime>USE_CURRENT_TIMESTAMP</creationTime>
 					</container>
+					<allowInsecureRegistries>true</allowInsecureRegistries>
 				</configuration>
 			</plugin>
 		</plugins>
